@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somit Panchal - BIM Architect & Project Manager Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e6ed;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(30, 30, 63, 0.95);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        /* Header Section */
+        .header {
+            height: 100vh;
+            background: linear-gradient(rgba(15, 15, 35, 0.7), rgba(26, 26, 46, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="%23667eea" stroke-width="1" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.2) 0%, transparent 50%);
+            animation: backgroundFloat 15s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleReveal 2s ease-out;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #a8b3cf;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: #8892b0;
+            animation: fadeInUp 1.5s ease-out 1s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1.5s ease-out 1.5s both;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        @keyframes titleReveal {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(15, 15, 35, 0.95);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: #a8b3cf;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav a:hover::before, .nav a.active::before {
+            left: 0;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: white;
+        }
+
+        /* Portfolio Grid Section */
+        .portfolio-section {
+            padding: 6rem 2rem;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #8892b0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .portfolio-item {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="1" fill="white" opacity="0.3"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #e0e6ed;
+        }
+
+        .portfolio-category {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .portfolio-description {
+            color: #8892b0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        /* Experience Timeline */
+        .experience-section {
+            padding: 6rem 2rem;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: calc(50% + 2rem);
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: calc(50% + 2rem);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 4px solid rgba(15, 15, 35, 1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(102, 126, 234, 0); }
+        }
+
+        .timeline-content {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.15);
+        }
+
+        .timeline-date {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #e0e6ed;
+        }
+
+        .timeline-company {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 6rem 2rem;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #e0e6ed;
+        }
+
+        .skill-list {
+            list-style: none;
+            color: #8892b0;
+        }
+
+        .skill-list li {
+            padding: 0.3rem 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #2d3561 100%);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-description {
+            font-size: 1.2rem;
+            color: #8892b0;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-item a {
+            color: #667eea;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #764ba2;
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Floating particles */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        .particle:nth-child(odd) { animation-duration: 25s; }
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 3s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 6s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 9s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 12s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 15s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 18s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 21s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 24s; }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 2rem;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 4rem;
+                margin-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-marker {
+                left: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles -->
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="nav" id="navbar">
+            <div class="nav-container">
+                <div class="logo">SOMIT PANCHAL</div>
+                <div class="nav-links">
+                    <a href="#home" class="active">Home</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header Section -->
+        <section id="home" class="header">
+            <div class="hero-content">
+                <h1 class="hero-title">Somit Panchal</h1>
+                <h2 class="hero-subtitle">BIM Architect & Project Manager</h2>
+                <p class="hero-description">
+                    Transforming architectural visions into reality through innovative BIM solutions and strategic project management. Specialized in construction management, urban development, and cutting-edge visualization technologies.
+                </p>
+                <a href="#portfolio" class="cta-button">View My Work</a>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">
+                    Showcasing innovative BIM solutions and architectural excellence across diverse project scales
+                </p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">BIM</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Infrastructure Project</div>
+                        <h3 class="portfolio-title">Mumbai-Ahmedabad Bullet Train</h3>
+                        <p class="portfolio-description">
+                            Supported design coordination and progress reporting for NHSRCL's Ahmedabad Station. Developed comprehensive BIM models and clash detection systems for this landmark infrastructure project.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Revit</span>
+                            <span class="tech-tag">BIM Modeling</span>
+                            <span class="tech-tag">Clash Detection</span>
+                            <span class="tech-tag">Infrastructure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">3D</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Architectural Thesis</div>
+                        <h3 class="portfolio-title">Experiential Museum of Sensory Evolution</h3>
+                        <p class="portfolio-description">
+                            Designed an interactive and sustainable museum with focus on sensory experiences. Incorporated preliminary cost estimation, construction phasing, and sustainable design principles.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">SketchUp</span>
+                            <span class="tech-tag">Lumion</span>
+                            <span class="tech-tag">Sustainable Design</span>
+                            <span class="tech-tag">Cost Estimation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">PM</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Academic Project</div>
+                        <h3 class="portfolio-title">Quantum Software Project</h3>
+                        <p class="portfolio-description">
+                            Created comprehensive project plan with WBS, schedule, cost estimates, and risk analysis. Demonstrated advanced project management methodologies for software development lifecycle.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Microsoft Project</span>
+                            <span class="tech-tag">Risk Analysis</span>
+                            <span class="tech-tag">WBS</span>
+                            <span class="tech-tag">Cost Management</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">BIM</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Research Project</div>
+                        <h3 class="portfolio-title">BIM Impact on Construction Efficiency</h3>
+                        <p class="portfolio-description">
+                            Led comprehensive research on BIM adoption in construction. Delivered risk analysis, ROI models, and strategic frameworks to improve construction efficiency and reduce project risks.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Research</span>
+                            <span class="tech-tag">ROI Analysis</span>
+                            <span class="tech-tag">BIM Strategy</span>
+                            <span class="tech-tag">Efficiency Metrics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">UD</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Urban Development</div>
+                        <h3 class="portfolio-title">Urban Redevelopment Projects</h3>
+                        <p class="portfolio-description">
+                            Planned comprehensive urban redevelopment and resort projects with emphasis on resource optimization, structural feasibility, and sustainable development practices.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Urban Planning</span>
+                            <span class="tech-tag">AutoCAD</span>
+                            <span class="tech-tag">Resource Planning</span>
+                            <span class="tech-tag">Feasibility Studies</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image">RT</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-category">Commercial Projects</div>
+                        <h3 class="portfolio-title">Retail Fit-out Projects</h3>
+                        <p class="portfolio-description">
+                            Coordinated cross-functional teams and managed project timelines for multiple retail fit-out projects. Ensured on-time delivery through effective resource allocation and stakeholder communication.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Project Coordination</span>
+                            <span class="tech-tag">Timeline Management</span>
+                            <span class="tech-tag">Team Leadership</span>
+                            <span class="tech-tag">Delivery Management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline -->
+        <section id="experience" class="experience-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Professional Journey</h2>
+                <p class="section-subtitle">
+                    Building expertise through diverse architectural and project management roles
+                </p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Mar 2024 – Mar 2025</div>
+                        <h3 class="timeline-title">Jr. BIM Architect</h3>
+                        <div class="timeline-company">TECHTURE PVT LTD, Indore</div>
+                        <ul class="achievements">
+                            <li>Led BIM modeling (LOD 200-400) and clash detection for retail fit-out projects</li>
+                            <li>Coordinated with cross-functional teams ensuring on-time project delivery</li>
+                            <li>Supported Mumbai-Ahmedabad Bullet Train infrastructure project</li>
+                            <li>Enhanced client communication through 3D visualizations and documentation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jun 2022 – Dec 2022</div>
+                        <h3 class="timeline-title">Intern Architect</h3>
+                        <div class="timeline-company">ANA DESIGNS PVT LTD, Mumbai</div>
+                        <ul class="achievements">
+                            <li>Developed AutoCAD layouts with MEP coordination compliance</li>
+                            <li>Conducted site verification and progress reporting</li>
+                            <li>Prepared material specifications and quantity take-offs</li>
+                            <li>Supported procurement and cost estimation processes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jun 2021 – Jul 2021</div>
+                        <h3 class="timeline-title">Intern Architect</h3>
+                        <div class="timeline-company">SIDDHARTH TONGYA & ASSOCIATES, Indore</div>
+                        <ul class="achievements">
+                            <li>Assisted in Revit modeling for residential and commercial projects</li>
+                            <li>Created visual presentations for client approvals</li>
+                            <li>Participated in project scheduling and progress tracking</li>
+                            <li>Reduced revision cycles through effective design communication</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section fade-in">
+            <div class="section-header">
+                <h2 class="section-title">Core Competencies</h2>
+                <p class="section-subtitle">
+                    Comprehensive skill set spanning technical expertise, project management, and leadership
+                </p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">🏗️</div>
+                    <h3 class="skill-title">BIM & Design</h3>
+                    <ul class="skill-list">
+                        <li>Revit (LOD 200-400)</li>
+                        <li>AutoCAD Layouts</li>
+                        <li>SketchUp Modeling</li>
+                        <li>Lumion Visualization</li>
+                        <li>Clash Detection</li>
+                        <li>3D Documentation</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">📊</div>
+                    <h3 class="skill-title">Project Management</h3>
+                    <ul class="skill-list">
+                        <li>Microsoft Project</li>
+                        <li>Primavera P6</li>
+                        <li>Risk Analysis</li>
+                        <li>Cost Estimation</li>
+                        <li>Resource Allocation</li>
+                        <li>Agile & Lean Practices</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">👥</div>
+                    <h3 class="skill-title">Leadership</h3>
+                    <ul class="skill-list">
+                        <li>Cross-functional Teams</li>
+                        <li>Stakeholder Communication</li>
+                        <li>Contract Management</li>
+                        <li>Conflict Resolution</li>
+                        <li>Progress Reporting</li>
+                        <li>Client Relations</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">🎯</div>
+                    <h3 class="skill-title">Strategic Planning</h3>
+                    <ul class="skill-list">
+                        <li>Data-driven Decisions</li>
+                        <li>Budget Forecasting</li>
+                        <li>Quality Assurance</li>
+                        <li>Risk Mitigation</li>
+                        <li>Process Optimization</li>
+                        <li>Strategic Analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section fade-in">
+            <div class="contact-content">
+                <h2 class="contact-title">Let's Collaborate</h2>
+                <p class="contact-description">
+                    Ready to bring innovative BIM solutions and strategic project management to your next venture? Let's discuss how we can transform your architectural vision into reality.
+                </p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <p>panchalsomit.us@northeastern.edu</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <h3>Phone</h3>
+                        <p>+1 (857)-427-7931</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <h3>Location</h3>
+                        <p>Boston, MA</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <h3>LinkedIn</h3>
+                        <p>Professional Network</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav a, .cta-button').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Update active nav item
+                document.querySelectorAll('.nav a').forEach(navLink => {
+                    navLink.classList.remove('active');
+                });
+                if (this.classList.contains('nav')) {
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Update active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop - 200) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
